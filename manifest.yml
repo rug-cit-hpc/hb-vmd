@@ -1,0 +1,14 @@
+---
+name: VMD
+category: Interactive Apps
+subcategory: GUIs
+role: batch_connect
+description: |
+  This app will launch [VMD] on the [Habrok cluster]. You will be able to interact with the VMD GUI through a VNC session.
+
+  *Disclaimer:* This software is for **academic purpose** only. Please review
+  the [license agreement] before you use this software.
+
+  [VMD]: http://www.ks.uiuc.edu/Research/vmd/
+  [Habrok cluster]: https://wiki.hpc.rug.nl/habrok/start
+  [license agreement]: http://www.ks.uiuc.edu/Research/vmd/current/LICENSE.html
