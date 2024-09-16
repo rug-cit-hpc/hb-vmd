@@ -51,7 +51,7 @@ script:
     <% if node_type == 'visualization' %>
     - "--gres=gpu:quadro_rtx_8000:2"
     - "--mem=0"
-    - "-c=40"
+    - "--cpus-per-task=40"
     <% else %>
     - "--mem"
     - "<%= (memory.nil? || memory.empty?) ? 2000 : memory.to_i * 1000 %>"
