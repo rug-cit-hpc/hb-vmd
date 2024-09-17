@@ -1,0 +1,65 @@
+<%-
+    paths = []
+    paths << Pathname.new("/scratch/#{User.new.name}")
+
+    projects = User.new.groups.map(&:name).grep(/^hb-./)
+
+    paths.concat projects.map { |p| Pathname.new("/scratch/#{p}")  }
+-%>
+
+---
+cluster: "login1"
+
+form:
+  - node_type
+  - auto_modules_VMD
+  - num_hours
+  - num_cores
+  - memory
+  - bc_vnc_resolution
+
+attributes:
+  auto_modules_VMD:
+    label: VMD Version
+    help: |
+      Select one of the VMD versions from the list.
+    default: false
+  node_type:
+    label: Node Type
+    help: |
+      Select the type of node you would like to use. For information on the different options, please see 
+      [our wiki](https://wiki.hpc.rug.nl/habrok/introduction/cluster_description#compute_nodes)
+    widget: select
+    options:
+      - [ "GPU (A100)", "gpua100" ]
+      - [ "GPU (V100)", "gpuv100" ]
+      - [ "Visualization", "visualization", data-hide-num-cores: true, data-hide-memory: true ]
+
+  num_hours:
+    label: Number of hours
+    widget: 'number_field'
+    help: "Please give the maximum wall time in hours"
+    value: 2
+    min: 1
+    step: 1
+    max: 12
+
+  memory:
+    label: Memory
+    help: Amount of memory requested, in GB
+    widget: 'number_field'
+    value: 2
+    min: 1
+    step: 1
+
+  num_cores:
+    label: Number of CPU cores
+    widget: number_field
+    value: 1
+    help: "Select the number of CPU cores."
+    min: 1
+    step: 1
+    max: 128
+
+  bc_vnc_resolution:
+    required: true
